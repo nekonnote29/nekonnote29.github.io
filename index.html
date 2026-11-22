@@ -9,7 +9,7 @@
     <meta name="description" content="뷰티 브랜드의 핵심 소구점을 발견하고 AI 비주얼과 트렌디한 콘텐츠로 소비자의 공감과 반응을 이끄는 콘텐츠 마케터 서유리의 포트폴리오. 뷰티 비주얼, 영상 캠페인, 숏폼, 이커머스 최적화 작업을 담았습니다.">
     <meta name="author" content="SEO YURI">
     <meta name="theme-color" content="#FFFFFF">
-    <link rel="canonical" href="https://seoyuri.com/">
+    <link rel="canonical" href="https://nekonnote29.github.io/">
 
     <!-- Open Graph (카카오톡, 슬랙, 링크드인, 페이스북 미리보기) -->
     <meta property="og:type" content="website">
@@ -17,17 +17,17 @@
     <meta property="og:site_name" content="SEO YURI'S PORTFOLIO">
     <meta property="og:title" content="SEO YURI'S PORTFOLIO — BEAUTY CREATIVE JOURNAL">
     <meta property="og:description" content="AI 비주얼과 트렌디한 콘텐츠로 소비자의 공감과 반응을 이끄는 뷰티 콘텐츠 마케터 서유리의 포트폴리오.">
-    <meta property="og:image" content="https://seoyuri.com/image/og-cover.jpg">
+    <meta property="og:image" content="https://nekonnote29.github.io/image/og-cover.jpg">
     <meta property="og:image:width" content="1200">
     <meta property="og:image:height" content="630">
     <meta property="og:image:alt" content="SEO YURI Beauty Content Portfolio Cover">
-    <meta property="og:url" content="https://seoyuri.com/">
+    <meta property="og:url" content="https://nekonnote29.github.io/">
 
     <!-- Twitter / X 카드 -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="SEO YURI'S PORTFOLIO — BEAUTY CREATIVE JOURNAL">
     <meta name="twitter:description" content="AI 비주얼과 트렌디한 콘텐츠로 소비자의 공감과 반응을 이끄는 뷰티 콘텐츠 마케터 서유리의 포트폴리오.">
-    <meta name="twitter:image" content="https://seoyuri.com/image/og-cover.jpg">
+    <meta name="twitter:image" content="https://nekonnote29.github.io/image/og-cover.jpg">
 
     <!-- 파비콘 (SVG — image/symbol.svg) -->
     <link rel="icon" href="image/symbol.svg" type="image/svg+xml">
@@ -942,7 +942,10 @@
         .about-section {
             /* 아래쪽 여백은 .about-lower 의 padding-bottom 이 담당한다.
                → 위 구분선↔아이콘 / 아이콘↔아래 구분선 간격이 같아진다 */
-            padding: 24px 0 0;
+            /* 위 구분선 ↔ 프로필 사진 사이 간격
+               (사진이 .about-portrait 의 margin-top 만큼 더 내려가 있으므로
+                아래 구분선 쪽(.core-skills margin-top)보다 작은 값을 준다) */
+            padding: 86px 0 0;
             background-color: var(--color-soft-bg);
             border-top: 1px solid var(--color-border);
             border-bottom: 1px solid var(--color-border);
@@ -1674,7 +1677,10 @@
            ========================================================================== */
         .core-skills {
             max-width: 1200px;
-            margin: 44px auto 0;
+            /* 프로필 사진 아래 ↔ 다음 구분선 사이 간격
+               사진 위쪽 여백(padding 86 + 사진 margin-top 64 = 150)과
+               정확히 같아지도록 130 으로 맞춘다 */
+            margin: 130px auto 0;
             /* 위 구분선 아래 간격과 아래 구분선 위 간격을 같게 만든다.
                위아래 padding 을 같은 값으로 두면 마지막 항목과 아래 선 사이도
                첫 항목과 위 선 사이와 동일해진다 */
@@ -2229,6 +2235,9 @@
         .media-visual--link img {
             width: 100%;
             display: block;
+            /* 이미지가 도착하기 전에도 자리를 잡아 두어 레이아웃이 튀지 않게 한다 */
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
             transition: transform var(--transition-smooth), opacity var(--transition-fast);
         }
 
@@ -4825,7 +4834,8 @@
                         items: [
                             {
                                 type: "video",
-                                src: "image/project2/팀영상_1.mp4",
+                                youtube: "https://youtu.be/_1w4W_cwtt0",
+                                thumb: "image/project2/yt-chobs.jpg",
                                 alt: "[CHOBS] 여성청결제 AI·실사 홍보 광고 영상 — 팀 프로젝트",
                                 brand: "[CHOBS] (여성청결제 AI·실사 홍보 광고)",
                                 kind: "AI VIDEO",
@@ -4861,7 +4871,8 @@
                         items: [
                             {
                                 type: "video",
-                                src: "image/project2/再生(재생)동두천을켜다최종.mp4",
+                                youtube: "https://youtu.be/ikY02Er2UCM",
+                                thumb: "image/project2/yt-dongducheon.jpg",
                                 alt: "재생(再生), 동두천을 켜다 — 동두천 영상 공모전 출품작",
                                 brand: "재생(再生), 동두천을 켜다 (동두천 영상 공모전 출품작)",
                                 kind: "VIDEO",
@@ -4897,7 +4908,8 @@
                         items: [
                             {
                                 type: "video",
-                                src: "image/project2/과천축제_4차편집_261004.mp4",
+                                youtube: "https://youtu.be/rfRYlvAKG9I",
+                                thumb: "image/project2/yt-gwacheon.jpg",
                                 alt: "Gwacheon Festival Vlog (과천 축제 현장 브이로그) — 팀 프로젝트",
                                 brand: "Gwacheon Festival Vlog (과천 축제 현장 브이로그)",
                                 kind: "VIDEO",
@@ -4955,7 +4967,8 @@
                         items: [
                             {
                                 type: "video",
-                                src: "video/바닐라코 틴트.mp4",
+                                youtube: "https://youtu.be/RnpmM9NQw1U",
+                                thumb: "image/project3/yt-banila.jpg",
                                 alt: "바닐라코 틴트 광고 영상",
                                 brand: "바닐라코 틴트 광고",
                                 kind: "AI VIDEO",
@@ -4970,7 +4983,8 @@
                         items: [
                             {
                                 type: "video",
-                                src: "video/토리든수분크림_261117.mp4",
+                                youtube: "https://youtu.be/ermm8iPuVA8",
+                                thumb: "image/project3/yt-torriden.jpg",
                                 alt: "토리든 수분 크림 광고 영상",
                                 brand: "토리든 수분 크림 광고",
                                 kind: "AI VIDEO",
@@ -4985,7 +4999,8 @@
                         items: [
                             {
                                 type: "video",
-                                src: "video/아윤채샴푸수영.mp4",
+                                youtube: "https://youtu.be/m6ex5xxdd8Q",
+                                thumb: "image/project3/yt-ayunchae.jpg",
                                 alt: "아윤채 샴푸 광고 영상",
                                 brand: "아윤채 샴푸 광고",
                                 kind: "AI VIDEO",
@@ -5000,7 +5015,8 @@
                         items: [
                             {
                                 type: "video",
-                                src: "video/군포숏폼_서유리.mp4",
+                                youtube: "https://youtube.com/shorts/qNlJKUFjYvk",
+                                thumb: "image/project3/yt-gunpo-portrait.jpg",
                                 alt: "[군포 RE:FELL] 군포시 홍보 숏폼 — 반려견과 떠나는 힐링 여행",
                                 brand: "[군포 RE:FELL] (군포시 홍보 숏폼 · 우수상 수상)",
                                 brandMark: "우수상 수상",
@@ -5286,10 +5302,10 @@
 
                 if (item.type === 'video' && item.youtube) {
                     // 유튜브 링크 — 썸네일을 누르면 새 탭에서 영상으로 이동
-                    visual.classList.add('media-visual--link');
-                    if (item.portrait) visual.dataset.portrait = 'true';
-
+                    // (안내 문구가 옆 칸으로 밀리지 않도록 링크는 visual 안쪽에 둔다)
                     const link = document.createElement('a');
+                    link.className = 'media-visual--link';
+                    if (item.portrait) link.dataset.portrait = 'true';
                     link.href = item.youtube;
                     link.target = '_blank';
                     link.rel = 'noopener noreferrer';
@@ -5298,7 +5314,9 @@
                     const thumb = document.createElement('img');
                     thumb.src = item.thumb;
                     thumb.alt = item.alt || '';
-                    thumb.loading = 'lazy';
+                    // 모달 안에서는 지연 로딩 판정이 어긋나 빈 칸이 남는 경우가 있어
+                    // 썸네일은 즉시 로드한다 (장당 150KB 이하)
+                    thumb.loading = 'eager';
                     thumb.decoding = 'async';
                     link.appendChild(thumb);
 
@@ -5329,6 +5347,7 @@
                 itemEl.appendChild(visual);
 
                 // 외부 링크 영상은 안내 문구를 덧붙인다
+                // (썸네일 바로 아래에 붙도록 visual 안쪽에 넣는다)
                 if (item.type === 'video' && item.youtube) {
                     const note = document.createElement('a');
                     note.className = 'media-link-note';
@@ -5336,7 +5355,7 @@
                     note.target = '_blank';
                     note.rel = 'noopener noreferrer';
                     note.textContent = 'YouTube에서 보기';
-                    itemEl.appendChild(note);
+                    visual.appendChild(note);
                 }
 
                 // 문구(브랜드 + 설명)
