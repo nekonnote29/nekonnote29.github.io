@@ -1309,22 +1309,20 @@
         /* ==========================================================================
            7-2. 자격 급수 배지 (교육 이력은 About 사진 아래로 이동)
            ========================================================================== */
-        /* 수상(우수상)·자격(1급) 태그 — 배지 박스를 걷어내고 글자만 형광펜으로 칠한다 */
+        /* 수상(우수상)·자격(1급) 태그 — 배지·형광펜 없이 본문과 같은 글자로 이어 쓴다 */
         .edu-tag {
             display: inline;
-            padding: 1px 3px;
+            padding: 0;
             margin-left: 4px;
-            background: linear-gradient(to top, rgba(255, 232, 74, 0.9) 55%, transparent 55%);
-            box-decoration-break: clone;
-            -webkit-box-decoration-break: clone;
+            background: none;
             border: 0;
             border-radius: 0;
             font-family: var(--font-ko);
-            font-size: 1rem;
-            font-weight: 700;
+            font-size: inherit;
+            font-weight: inherit;
             letter-spacing: 0;
-            line-height: 1.2;
-            color: var(--color-text);
+            line-height: inherit;
+            color: inherit;
             vertical-align: baseline;
         }
 
@@ -3784,6 +3782,9 @@
                 font-size: 0.8rem;
                 padding-top: 0;
             }
+
+            /* 연도를 비워 둔 항목(같은 해가 이어질 때)은 빈 줄을 만들지 않는다 */
+            .portrait-edu-year:empty { display: none; }
         }
 
         /* 좁은 화면: 채널 · 툴 2분할을 세로로 쌓고 구분선도 가로로 전환 */
@@ -4029,10 +4030,10 @@
                 <div class="about-statement">
                     <p class="tagline-title">From Detail to Impact</p>
                     <p class="tagline-desc ko">
-                        작은 차이를 발견하고 아이디어를 실행하며 더 나은 결과를 만들어갑니다.
+                        작은 차이를 발견하고 더 나은 결과를 만들어갑니다.
                     </p>
                     <p class="tagline-desc en">
-                        I notice the small differences, act on the ideas, and turn them into better results.
+                        I notice the small differences and turn them into better results.
                     </p>
                 </div>
 
@@ -4048,7 +4049,7 @@
                         <span class="portrait-edu-year">2023</span>
                         <div class="portrait-edu-body ko">
                             신구대학교 치기공학과 학사 졸업
-                            <span class="portrait-edu-sub ko">2016년 전문학사 취득 후 전공심화과정 이수</span>
+                            <span class="portrait-edu-sub ko">2016. 전문학사 취득 후 전공심화과정 이수</span>
                         </div>
                     </div>
                     <div class="portrait-edu-item en">
@@ -4065,7 +4066,7 @@
                         <div class="portrait-edu-body ko">
                             치과기공소 근무
                             <span class="portrait-edu-desc ko">심미 보철 형태 제작 및 정밀 색조 매칭</span>
-                            <span class="portrait-edu-sub ko">2016.03-2025.10</span>
+                            <span class="portrait-edu-sub ko">2016.03 — 2025.10</span>
                         </div>
                     </div>
                     <div class="portrait-edu-item en">
@@ -4073,7 +4074,7 @@
                         <div class="portrait-edu-body en">
                             Dental Laboratory Technician
                             <span class="portrait-edu-desc">Aesthetic Prosthesis Fabrication &amp; Precise Shade Matching</span>
-                            <span class="portrait-edu-sub">2016.03-2025.10</span>
+                            <span class="portrait-edu-sub">2016.03 — 2025.10</span>
                         </div>
                     </div>
 
@@ -4094,14 +4095,14 @@
                     </div>
 
                     <div class="portrait-edu-item ko">
-                        <span class="portrait-edu-year">2026</span>
+                        <span class="portrait-edu-year" aria-hidden="true"></span>
                         <div class="portrait-edu-body ko">
                             AI 웹페이지 제작 교육
                             <span class="portrait-edu-sub ko">안양여성인력개발센터 · 06.30 — 07.09</span>
                         </div>
                     </div>
                     <div class="portrait-edu-item en">
-                        <span class="portrait-edu-year">2026</span>
+                        <span class="portrait-edu-year" aria-hidden="true"></span>
                         <div class="portrait-edu-body en">
                             AI Web Page Production Training
                             <span class="portrait-edu-sub">Anyang Women's HRD Center · 06.30 — 07.09</span>
@@ -4109,14 +4110,14 @@
                     </div>
 
                     <div class="portrait-edu-item ko">
-                        <span class="portrait-edu-year">2026</span>
+                        <span class="portrait-edu-year" aria-hidden="true"></span>
                         <div class="portrait-edu-body ko">
                             프리미어프로를 활용한 롱폼 영상 편집 교육
                             <span class="portrait-edu-sub ko">안양여성인력개발센터 · 08.03 — 09.30</span>
                         </div>
                     </div>
                     <div class="portrait-edu-item en">
-                        <span class="portrait-edu-year">2026</span>
+                        <span class="portrait-edu-year" aria-hidden="true"></span>
                         <div class="portrait-edu-body en">
                             Long-form Video Editing Training with Premiere Pro
                             <span class="portrait-edu-sub">Anyang Women's HRD Center · 08.03 — 09.30</span>
@@ -4125,33 +4126,33 @@
 
                     <!-- 수상 -->
                     <div class="portrait-edu-item ko">
-                        <span class="portrait-edu-year">2026. 11</span>
+                        <span class="portrait-edu-year" aria-hidden="true"></span>
                         <div class="portrait-edu-body ko">
                             군포 숏폼 콘텐츠 공모전 <span class="edu-tag">우수상</span>
-                            <span class="portrait-edu-sub ko">주최 : 군포시청 · 기획·촬영·편집 총괄</span>
+                            <span class="portrait-edu-sub ko">주최 : 군포시청 · 2026. 11</span>
                         </div>
                     </div>
                     <div class="portrait-edu-item en">
-                        <span class="portrait-edu-year">2026. 11</span>
+                        <span class="portrait-edu-year" aria-hidden="true"></span>
                         <div class="portrait-edu-body en">
                             Gunpo Short-form Content Competition <span class="edu-tag">Excellence Award</span>
-                            <span class="portrait-edu-sub">Hosted by Gunpo City · Planning, Filming &amp; Editing Lead</span>
+                            <span class="portrait-edu-sub">Hosted by Gunpo City · Nov 2026</span>
                         </div>
                     </div>
 
                     <!-- 자격 -->
                     <div class="portrait-edu-item ko">
-                        <span class="portrait-edu-year">2026. 11</span>
+                        <span class="portrait-edu-year" aria-hidden="true"></span>
                         <div class="portrait-edu-body ko">
                             GTQ-AI 그래픽기술자격 <span class="edu-tag">1급</span>
-                            <span class="portrait-edu-sub ko">한국생산성본부</span>
+                            <span class="portrait-edu-sub ko">주최 : 한국생산성본부 · 2026. 11</span>
                         </div>
                     </div>
                     <div class="portrait-edu-item en">
-                        <span class="portrait-edu-year">2026. 11</span>
+                        <span class="portrait-edu-year" aria-hidden="true"></span>
                         <div class="portrait-edu-body en">
                             GTQ-AI Graphic Technology Qualification <span class="edu-tag">Lv.1</span>
-                            <span class="portrait-edu-sub">Korea Productivity Center</span>
+                            <span class="portrait-edu-sub">Hosted by Korea Productivity Center · Nov 2026</span>
                         </div>
                     </div>
                 </div>
