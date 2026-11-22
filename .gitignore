@@ -1,0 +1,43 @@
+# ── 영상 원본 ──
+# 사이트에서는 YouTube 링크로 재생하므로 저장소에 올리지 않는다.
+# (GitHub는 파일 1개 100MB 제한이라 대용량 mp4는 push가 거부된다)
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+
+# ── 작업용 임시 폴더 ──
+_tmp/
+_preview/
+
+# ── OS / 에디터 ──
+.DS_Store
+Thumbs.db
+desktop.ini
+.vscode/
+.idea/
+
+# ── 원본 소스 이미지 (사이트에서 참조하지 않는 대용량 파일) ──
+image/works/*.png
+image/포트폴리오작업/
+image/sns/doito계정.png
+image/틱톡모찌.png
+image/about-normal.png
+
+# ── 서버 설정·관리자 페이지 (절대 공개 금지) ──
+admin.php
+db_config.php
+*.php
+config*.js
+.env
+.env.*
+
+# ── 편집 백업·임시 스크립트 ──
+*.bak
+*.ps1
+*.log
+index.html.bak
+_cand.ps1
+_rb.ps1
+
