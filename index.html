@@ -877,63 +877,102 @@
             line-height: 1.8;
         }
 
-        /* 카드 CTA — 클릭 유도형 버튼 (테두리 + 호버 시 반전) */
-        .card-link {
-            display: inline-flex;
+        /* 카드 CTA — 이미지에 커서를 올리면 어두워지며 나타나는 오버레이
+           (아래쪽 별도 버튼 대신 이미지 위에서 바로 클릭을 유도한다) */
+        .card-overlay {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 10px;
-            align-self: flex-start;
-            margin-top: 10px;
-            padding: 12px 22px;
+            gap: 14px;
+            /* 살짝 어둡게 덮어 이미지가 가라앉고 문구가 또렷하게 읽히도록 */
+            background-color: rgba(17, 17, 17, 0.42);
+            opacity: 0;
+            transition: opacity 0.34s ease;
+            z-index: 2;
+            /* 오버레이는 클릭을 가로채지 않고 카드 전체가 눌리게 한다 */
+            pointer-events: none;
+        }
+
+        .card-overlay-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 14px 26px;
             font-family: var(--font-sans);
-            font-size: 0.74rem;
+            font-size: 0.76rem;
             font-weight: 700;
-            letter-spacing: 1.6px;
+            letter-spacing: 1.8px;
             text-transform: uppercase;
-            color: var(--color-text);
-            background-color: transparent;
-            border: 1px solid var(--color-text);
+            color: #FFFFFF;
+            border: 1px solid rgba(255, 255, 255, 0.85);
             border-radius: 2px;
             line-height: 1;
             white-space: nowrap;
-            transition: background-color 0.28s ease, color 0.28s ease,
-                        letter-spacing 0.28s ease, transform 0.28s ease;
+            transition: background-color 0.3s ease, color 0.3s ease,
+                        letter-spacing 0.3s ease;
         }
-
-        /* 화살표만 살짝 오른쪽으로 */
-        .card-link::after { display: none; }
-
-        .card-link .arrow {
-            display: inline-block;
-            transition: transform 0.28s ease;
-        }
-
-        .work-item:hover .card-link,
-        .work-item:focus-visible .card-link {
-            background-color: var(--color-text);
-            color: var(--color-bg);
-            letter-spacing: 2px;
-        }
-
-        .work-item:hover .card-link .arrow,
-        .work-item:focus-visible .card-link .arrow {
-            transform: translateX(4px);
-        }
-
-        .card-link:active { transform: translateY(1px); }
 
         /* 한글 라벨은 자간을 좁게 (한글에 넓은 자간은 어색함) */
-        .card-link .ko {
+        .card-overlay-label .ko {
             font-family: var(--font-ko);
             font-weight: 400;
             letter-spacing: 1px;
-            font-size: 0.88rem;
+            font-size: 0.92rem;
         }
 
-        .work-item:hover .card-link .ko,
-        .work-item:focus-visible .card-link .ko {
+        .card-overlay-label .arrow {
+            display: inline-block;
+            transition: transform 0.3s ease;
+        }
+
+        .work-item:hover .card-overlay,
+        .work-item:focus-visible .card-overlay {
+            opacity: 1;
+        }
+
+        .work-item:hover .card-overlay-label,
+        .work-item:focus-visible .card-overlay-label {
+            background-color: #FFFFFF;
+            color: var(--color-text);
+            letter-spacing: 2.2px;
+        }
+
+        .work-item:hover .card-overlay-label .ko,
+        .work-item:focus-visible .card-overlay-label .ko {
             letter-spacing: 1.4px;
+        }
+
+        .work-item:hover .card-overlay-label .arrow,
+        .work-item:focus-visible .card-overlay-label .arrow {
+            transform: translateX(5px);
+        }
+
+        /* 터치 기기에는 호버가 없으므로, 이미지를 덮지 않고
+           하단에 얇은 그라데이션 힌트만 남겨 '눌러서 볼 수 있다'를 알린다 */
+        @media (hover: none) {
+            .card-overlay {
+                opacity: 1;
+                justify-content: flex-end;
+                align-items: flex-end;
+                padding: 0 22px 20px;
+                background: linear-gradient(
+                    to top,
+                    rgba(17, 17, 17, 0.55) 0%,
+                    rgba(17, 17, 17, 0.16) 34%,
+                    rgba(17, 17, 17, 0) 62%
+                );
+            }
+            .card-overlay-label {
+                padding: 10px 16px;
+                font-size: 0.68rem;
+                border-color: rgba(255, 255, 255, 0.7);
+                background-color: rgba(255, 255, 255, 0.14);
+                backdrop-filter: blur(3px);
+            }
+            .card-overlay-label .ko { font-size: 0.8rem; }
         }
 
         /* ==========================================================================
@@ -3806,60 +3845,70 @@
             <article class="work-item item-visual-1 reveal-node" role="button" tabindex="0" data-project="project1" aria-label="AI Editorial, Banner & Poster 프로젝트 상세 보기">
                 <div class="card-image">
                     <img src="image/sensory-bloom.jpg" width="2800" height="1400" loading="lazy" decoding="async" alt="화장품 AI 연출컷 — 메디큐브 PDRN 크림 비주얼">
+                    <span class="card-overlay" aria-hidden="true">
+                        <span class="card-overlay-label"><span class="ko">자세히 보기</span><span class="en">View Details</span><span class="arrow">→</span></span>
+                    </span>
                 </div>
                 <div class="card-badge">① Beauty Visual & AI Direction</div>
                 <h3 class="card-title">AI Editorial, Banner & Poster</h3>
                 <p class="card-desc ko">브랜드별 콘셉트와 제품의 특징을 분석하고, 각기 다른 비주얼 전략을 AI 이미지로 구현했습니다.</p>
                 <p class="card-desc en">Analyzing each brand's concept and product character, then translating them into distinct visual strategies through AI imagery.</p>
-                <span class="card-link"><span class="ko">자세히 보기</span><span class="en">View Details</span><span class="arrow" aria-hidden="true">→</span></span>
             </article>
 
             <!-- ② VIDEO PRODUCTION -->
             <article class="work-item item-visual-2 reveal-node" role="button" tabindex="0" data-project="project2" aria-label="Team Video Projects 프로젝트 상세 보기">
                 <div class="card-image">
                     <img src="image/project2/team-thumb.jpg" width="1600" height="800" loading="lazy" decoding="async" alt="Team Video Projects — 여성청결제 팀 프로젝트 거품 연출 장면 썸네일">
+                    <span class="card-overlay" aria-hidden="true">
+                        <span class="card-overlay-label"><span class="ko">자세히 보기</span><span class="en">View Details</span><span class="arrow">→</span></span>
+                    </span>
                 </div>
                 <div class="card-badge">② Team Video Production</div>
                 <h3 class="card-title">Team Video Projects</h3>
                 <p class="card-desc ko">AI 생성부터 실사 촬영·편집까지 폭넓게 다룬 팀 영상 프로젝트로, 제품 홍보 광고·브이로그·동두천 공모전 영상의 기획·촬영·AI 연출·편집을 수행했습니다.</p>
                 <p class="card-desc en">AI-produced ad films built from each product's key selling point — covering concept planning, AI scene generation, narration, motion graphics, and final edit in a team project.</p>
-                <span class="card-link"><span class="ko">자세히 보기</span><span class="en">View Details</span><span class="arrow" aria-hidden="true">→</span></span>
             </article>
 
             <!-- ③ PERSONAL VIDEO PRODUCTION — 가로 영상 3편을 한 줄로 -->
             <article class="work-item item-visual-3 reveal-node" role="button" tabindex="0" data-project="project3" aria-label="Personal Video Projects 프로젝트 상세 보기">
                 <div class="card-image">
                     <img src="image/project3/banila-thumb.jpg" width="1600" height="800" loading="lazy" decoding="async" alt="바닐라코 틴트 광고 영상 썸네일 — 제품을 든 얼굴 클로즈업">
+                    <span class="card-overlay" aria-hidden="true">
+                        <span class="card-overlay-label"><span class="ko">자세히 보기</span><span class="en">View Details</span><span class="arrow">→</span></span>
+                    </span>
                 </div>
                 <div class="card-badge">③ Personal Video Production</div>
                 <h3 class="card-title">Personal Video Projects</h3>
                 <p class="card-desc ko">직접 기획·제작한 개인 AI 광고 영상과 지자체 홍보 영상, 상업 영상입니다. 각기 다른 무드로 연출한 AI 광고부터 우수상을 수상한 군포시 홍보 숏폼, 클라이언트가 최종 채택한 상업 영상까지 담았습니다.</p>
                 <p class="card-desc en">A collection of self-produced AI ad films, local government promos, and commercial videos — AI ads in distinct moods, an award-winning Gunpo City promo short, and commercial videos adopted by clients.</p>
-                <span class="card-link"><span class="ko">자세히 보기</span><span class="en">View Details</span><span class="arrow" aria-hidden="true">→</span></span>
             </article>
 
             <!-- ④ CONTENT MARKETING -->
             <article class="work-item item-visual-4 reveal-node" role="button" tabindex="0" data-project="project4" aria-label="TikTok Channel Growth 프로젝트 상세 보기">
                 <div class="card-image">
                     <img src="image/project4/space-cover.jpg" width="1600" height="800" loading="lazy" decoding="async" alt="SNS 커버 — Global Contents, ES Organic Reach 190만 뷰">
+                    <span class="card-overlay" aria-hidden="true">
+                        <span class="card-overlay-label"><span class="ko">자세히 보기</span><span class="en">View Details</span><span class="arrow">→</span></span>
+                    </span>
                 </div>
                 <div class="card-badge">④ Content Marketing</div>
                 <h3 class="card-title">TikTok Channel Growth</h3>
                 <p class="card-desc ko">스페인어권 시청자를 겨냥한 한국 라이프스타일 틱톡 채널(TikTok ES)을 운영하며 팔로워 10.5K, 누적 좋아요 78.6K, 단일 게시물 최고 조회수 91만 회를 기록했습니다.<br>글로벌 타깃을 사로잡은 숏폼 기획·편집 노하우를 바탕으로, 현재는 영어권 채널(TikTok US · Instagram EN)까지 영역을 확장해 K-뷰티 콘텐츠를 제작·운영하고 있습니다.</p>
                 <p class="card-desc en">Ran a Korean-lifestyle TikTok channel for Spanish-speaking audiences (TikTok ES), reaching 10.5K followers, 78.6K total likes, and 910K views on a single post. Building on that short-form planning and editing expertise, I'm now expanding into English-language channels (TikTok US · Instagram EN) to produce and run K-beauty content.</p>
-                <span class="card-link"><span class="ko">자세히 보기</span><span class="en">View Details</span><span class="arrow" aria-hidden="true">→</span></span>
             </article>
 
             <!-- ⑤ COUPANG & NAVER SMART STORE -->
             <article class="work-item item-visual-5 reveal-node" role="button" tabindex="0" data-project="project5" aria-label="Commerce Brand Operations 프로젝트 상세 보기">
                 <div class="card-image">
                     <img src="image/project5/ecommerce-thumb.jpg" width="1600" height="800" loading="lazy" decoding="async" alt="이커머스 운영 — 배송 밴과 택배 상자로 연출한 커머스 비주얼">
+                    <span class="card-overlay" aria-hidden="true">
+                        <span class="card-overlay-label"><span class="ko">자세히 보기</span><span class="en">View Details</span><span class="arrow">→</span></span>
+                    </span>
                 </div>
                 <div class="card-badge">⑤ Coupang &amp; Naver Smart Store</div>
                 <h3 class="card-title">Commerce Brand Operations</h3>
                 <p class="card-desc ko">쿠팡과 네이버 스마트스토어에서 브랜드 골프복의 상품 등록부터 옵션·대표 썸네일 세팅, 상세페이지 구성까지 오픈마켓의 실제 판매 페이지 구축 과정을 경험했습니다.</p>
                 <p class="card-desc en">Built real product pages on Coupang and Naver Smart Store for a golf apparel brand — from product listing and option/thumbnail setup to full detail-page composition.</p>
-                <span class="card-link"><span class="ko">자세히 보기</span><span class="en">View Details</span><span class="arrow" aria-hidden="true">→</span></span>
             </article>
         </div>
     </section>
