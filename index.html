@@ -233,6 +233,32 @@
         html[lang="en"] .ko { display: none !important; }
 
         /* ==========================================================================
+           3-1. 콘텐츠 보호 (이미지 · 영상 저장 억제)
+           브라우저에 이미 전송된 파일을 완전히 막을 수는 없으므로,
+           우클릭 메뉴·드래그·길게 눌러 저장 같은 '손쉬운 경로'만 닫는다.
+           ========================================================================== */
+        img,
+        video {
+            /* 이미지/영상을 끌어다 놓아 저장하는 경로 차단 */
+            -webkit-user-drag: none;
+            -khtml-user-drag: none;
+            -moz-user-drag: none;
+            -o-user-drag: none;
+            user-drag: none;
+            /* 모바일에서 길게 눌러 '이미지 저장' 뜨는 것 방지 */
+            -webkit-touch-callout: none;
+            /* 이미지 위 텍스트 선택 방지 */
+            -webkit-user-select: none;
+            user-select: none;
+        }
+
+        /* 배경 이미지로 쓰인 히어로 사진도 같은 보호 대상 */
+        .hero-bg {
+            -webkit-user-drag: none;
+            user-drag: none;
+        }
+
+        /* ==========================================================================
            4. 상단 헤더 (Header)
            ========================================================================== */
         header {
@@ -4496,6 +4522,39 @@
                 el.addEventListener('mouseleave', () => silverCursor.classList.remove('is-hovering'));
             });
         }
+
+        /* 1-3. 콘텐츠 보호 — 이미지·영상의 손쉬운 저장 경로를 닫는다
+           ─ 브라우저에 이미 내려온 파일이라 완전 차단은 불가능하다.
+             우클릭 메뉴·드래그·모바일 롱프레스 같은 '쉬운 경로'만 닫아
+             캐주얼한 복제를 줄이는 용도.
+           ─ 개발자 도구 단축키는 막지 않는다 (접근성 훼손 + 우회가 쉬움) */
+        (function protectMedia() {
+            // 1) 이미지를 끌어다 놓아 저장하는 경로 차단
+            document.addEventListener('dragstart', (e) => {
+                if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+            }, true);
+
+            // 2) 이미지·영상 위 우클릭 시 브라우저 메뉴(다른 이름으로 저장) 차단
+            document.addEventListener('contextmenu', (e) => {
+                const el = e.target;
+                if (!el || !el.tagName) return;
+
+                const tag = el.tagName;
+                if (tag === 'IMG' || tag === 'VIDEO' || tag === 'CANVAS') {
+                    e.preventDefault();
+                    return;
+                }
+                // 이미지로 감싼 카드·링크 위에서도 함께 막는다
+                if (el.closest && el.closest('.card-image, .media-visual--link, .tiktok-shot')) {
+                    e.preventDefault();
+                }
+            });
+
+            // 3) 이미지에서 텍스트 선택이 시작되는 것도 차단
+            document.addEventListener('selectstart', (e) => {
+                if (e.target && e.target.tagName === 'IMG') e.preventDefault();
+            });
+        })();
 
         /* 1-2. 히어로 이미지 위 마우스 반짝임 (Canvas 파티클)
            ─ 마우스를 따라 작은 별이 흩어지며 빛나고, 잠시 뒤 사라짐
