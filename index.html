@@ -3673,7 +3673,8 @@
             .about-portrait { margin-top: 0; }
             .about-lower { grid-template-columns: 1fr; gap: 48px; }
             .editorial-grid { gap: 84px 24px; }
-            /* 좁은 화면에서는 카드 설명 강제 줄바꿈을 풀어 폭에 맞게 흐르게 한다 */
+            /* 좁은 화면에서는 카드 설명의 강제 줄바꿈을 풀어
+               폭에 맞춰 자연스럽게 흐르게 한다 (짧은 줄이 생기지 않도록) */
             .card-desc .desc-br { display: none; }
             .item-visual-2, .item-visual-3, .item-visual-4, .item-visual-5 { grid-column: span 12; padding: 0; }
             /* 좁은 화면에서는 영상 3편을 세로로 */
@@ -3750,6 +3751,10 @@
 
         @media (max-width: 768px) {
             .container { padding: 0 24px; }
+            /* .work-section 은 .container 를 함께 쓰기 때문에 위 규칙이
+               세로 여백까지 0 으로 덮어쓴다 → 아래쪽 여백만 다시 지정해
+               마지막 카드 설명과 회색 구분선 사이를 띄운다 */
+            .work-section { padding: 0 24px 64px; }
             .nav-menu { padding: 0 24px; }
             .hero-title { font-size: 3.2rem; }
             .section-header h2 { font-size: 2.4rem; }
