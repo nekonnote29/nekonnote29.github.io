@@ -3844,9 +3844,10 @@
         @media (max-width: 768px) {
             .container { padding: 0 24px; }
             /* .work-section 은 .container 를 함께 쓰기 때문에 위 규칙이
-               세로 여백까지 0 으로 덮어쓴다 → 아래쪽 여백만 다시 지정해
-               마지막 카드 설명과 회색 구분선 사이를 띄운다 */
-            .work-section { padding: 0 24px 64px; }
+               세로 여백까지 0 으로 덮어쓴다 → 위·아래 여백을 다시 지정한다.
+               위쪽은 히어로와 붙어 보이지 않게, 아래쪽은 회색 About 박스
+               시작 위치가 답답하지 않게 같은 값으로 맞춘다. */
+            .work-section { padding: 64px 24px; }
             .nav-menu { padding: 0 24px; }
             .hero-title { font-size: clamp(1.6rem, 8.3vw, 2.05rem); }
             .section-header h2 { font-size: 2.4rem; }
