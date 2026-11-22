@@ -1,0 +1,9 @@
+# 모든 크롤러(카카오톡·슬랙·트위터 등 링크 미리보기 봇 포함) 허용
+User-agent: *
+Allow: /
+
+# 링크 미리보기용 대표 이미지가 항상 접근 가능하도록 명시
+Allow: /image/og-cover-2026.jpg
+Allow: /image/
+
+Sitemap: https://nekonnote29.github.io/sitemap.xml
