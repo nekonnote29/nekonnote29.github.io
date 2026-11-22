@@ -3691,15 +3691,19 @@
         @media (max-width: 900px) {
             .hero {
                 align-items: flex-end;
-                padding-bottom: 64px;
+                padding-bottom: 34px;
             }
             .hero-bg { object-position: 30% center; }
+            /* 인물이 화면 위쪽 절반을 차지하므로, 아래쪽만 어둡게 깔아
+               텍스트가 얼굴을 가리지 않고 읽히도록 한다. */
             .hero::before {
                 background: linear-gradient(
                     to top,
-                    rgba(20, 12, 12, 0.62) 0%,
-                    rgba(20, 12, 12, 0.30) 45%,
-                    rgba(20, 12, 12, 0.06) 100%
+                    rgba(20, 12, 12, 0.82) 0%,
+                    rgba(20, 12, 12, 0.56) 30%,
+                    rgba(20, 12, 12, 0.18) 56%,
+                    rgba(20, 12, 12, 0.02) 78%,
+                    rgba(20, 12, 12, 0) 100%
                 );
             }
             .hero::after { display: none; }
@@ -3712,6 +3716,75 @@
             /* 모바일 전용 줄바꿈으로 교체 */
             .hero-statement .br-desk { display: none; }
             .hero-statement .br-mo { display: inline; }
+            /* 타이틀이 4줄로 쌓이면 화면 위쪽 인물의 얼굴까지 올라와 가린다.
+               폰 폭에서는 2줄로 눕혀 블록 높이를 줄이고 아래쪽에 앉힌다.
+               (태블릿은 세로 공간이 넉넉해 기존 4줄 구성을 유지한다) */
+            .hero-statement {
+                font-size: 0.9rem;
+                line-height: 1.68;
+                margin-bottom: 22px;
+                text-shadow: 0 1px 8px rgba(0, 0, 0, 0.55);
+            }
+            .hero-statement.ko {
+                font-size: 0.9rem;
+                line-height: 1.76;
+                letter-spacing: 0;
+            }
+            .btn-hero {
+                padding: 13px 30px;
+                font-size: 0.76rem;
+            }
+        }
+
+        /* 폰 폭: 히어로 타이틀을 2줄로 눕히고 크기를 줄여
+           사진 속 인물의 얼굴을 가리지 않게 한다. */
+        @media (max-width: 600px) {
+            .hero-title .br-desk { display: none; }
+            .hero-title {
+                /* 폰 폭(320~430) 전 구간에서 2줄이 유지되도록 vw 기반으로 맞춘다 */
+                font-size: clamp(1.6rem, 8.3vw, 2.05rem);
+                line-height: 1.28;
+                letter-spacing: -0.2px;
+                margin-bottom: 14px;
+                text-shadow: 0 2px 16px rgba(0, 0, 0, 0.4);
+            }
+            .hero-statement {
+                font-size: 0.86rem;
+                line-height: 1.64;
+                margin-bottom: 20px;
+            }
+            .hero-statement.ko {
+                font-size: 0.86rem;
+                line-height: 1.72;
+            }
+            .btn-hero {
+                padding: 12px 28px;
+                font-size: 0.74rem;
+            }
+        }
+
+        /* 짧은 화면(아이폰 SE 등): 세로 공간이 부족해 텍스트가 위로 밀리면
+           사진 속 얼굴(화면 높이의 약 60% 지점에서 끝남)까지 올라와 가린다.
+           여백과 타이포를 조금 더 줄여 얼굴 아래에 머물게 한다. */
+        @media (max-width: 600px) and (max-height: 760px) {
+            .hero { padding-bottom: 22px; }
+            .hero-title {
+                font-size: clamp(1.45rem, 7.4vw, 1.85rem);
+                margin-bottom: 10px;
+            }
+            .hero-statement {
+                font-size: 0.8rem;
+                line-height: 1.55;
+                margin-bottom: 16px;
+            }
+            .hero-statement.ko {
+                font-size: 0.8rem;
+                line-height: 1.62;
+            }
+            .btn-hero {
+                padding: 10px 24px;
+                font-size: 0.7rem;
+            }
         }
 
         /* 아주 좁은 화면(320px대)에서는 영문 문장이 단어 중간에서 끊기므로
@@ -3775,7 +3848,7 @@
                마지막 카드 설명과 회색 구분선 사이를 띄운다 */
             .work-section { padding: 0 24px 64px; }
             .nav-menu { padding: 0 24px; }
-            .hero-title { font-size: 3.2rem; }
+            .hero-title { font-size: clamp(1.6rem, 8.3vw, 2.05rem); }
             .section-header h2 { font-size: 2.4rem; }
             .contact-section h2 { font-size: 2.8rem; }
             .modal-headline { font-size: 2.6rem; }
@@ -3948,9 +4021,9 @@
         <div class="container hero-layout">
             <div class="hero-text-block reveal-node">
                 <h1 class="hero-title">
-                    BEAUTY<br>
-                    CONTENTS,<br>
-                    <i>CREATIVE</i><br>
+                    BEAUTY<br class="br-desk">
+                    CONTENTS,<br class="br-desk">
+                    <i>CREATIVE</i><br class="br-desk">
                     IDEAS.
                 </h1>
                 <p class="hero-statement ko">
