@@ -2622,6 +2622,71 @@
 
         .tiktok-card:hover .tiktok-shot img { transform: scale(1.03); }
 
+        /* ── SNS 카드 재생 버튼 ──
+           커서를 올리면 썸네일이 살짝 가라앉고 가운데에 재생 아이콘이 떠오른다. */
+        .tiktok-shot .play-badge {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0.86);
+            width: 62px;
+            height: 62px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.94);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.28s ease, transform 0.28s ease, background-color 0.28s ease;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .tiktok-shot .play-badge::after {
+            content: "";
+            display: block;
+            margin-left: 4px;
+            border-style: solid;
+            border-width: 10px 0 10px 17px;
+            border-color: transparent transparent transparent #111111;
+        }
+
+        /* 썸네일을 살짝 어둡게 덮어 버튼이 또렷하게 읽히도록 */
+        .tiktok-shot::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-color: rgba(17, 17, 17, 0.24);
+            opacity: 0;
+            transition: opacity 0.28s ease;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .tiktok-card:hover .tiktok-shot::before,
+        .tiktok-card:focus-within .tiktok-shot::before {
+            opacity: 1;
+        }
+
+        .tiktok-card:hover .tiktok-shot .play-badge,
+        .tiktok-card:focus-within .tiktok-shot .play-badge {
+            opacity: 1;
+            transform: translate(-50%, -50%) scale(1);
+            background-color: #FFFFFF;
+        }
+
+        /* 링크가 없는 카드(캡처만 있는 경우)에는 재생 버튼을 띄우지 않는다 */
+        .tiktok-shot:not([href]) .play-badge { display: none; }
+
+        /* 터치 기기에서는 호버가 없으므로 버튼을 옅게 상시 노출 */
+        @media (hover: none) {
+            .tiktok-shot[href] .play-badge {
+                opacity: 0.82;
+                transform: translate(-50%, -50%) scale(0.92);
+            }
+        }
+
         /* 캡처 이미지가 아직 없을 때 자리만 잡아 주는 빈 박스 */
         .tiktok-shot[data-empty="true"]::after {
             content: "게시물 캡처";
@@ -5917,6 +5982,15 @@
                             shot.appendChild(im);
                         } else {
                             shot.dataset.empty = 'true';
+                        }
+
+                        // 재생 버튼 — 게시물 링크가 있을 때만 썸네일 위에 겹쳐 둔다
+                        if (item.href) {
+                            const badge = document.createElement('span');
+                            badge.className = 'play-badge';
+                            badge.setAttribute('aria-hidden', 'true');
+                            shot.appendChild(badge);
+                            shot.setAttribute('aria-label', L(item, 'alt') + (isEnNow() ? ' — Watch on TikTok' : ' — 틱톡에서 보기'));
                         }
                         card.appendChild(shot);
 
