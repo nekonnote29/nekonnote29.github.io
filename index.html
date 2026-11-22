@@ -909,6 +909,10 @@
             line-height: 1.8;
         }
 
+        /* 카드 설명의 강제 줄바꿈 — 넓은 화면에서는 의미 단위로 끊고,
+           좁은 화면에서는 폭에 맞춰 자연스럽게 흐르게 둔다 */
+        .card-desc .desc-br { display: inline; }
+
         /* 카드 CTA — 이미지에 커서를 올리면 어두워지며 나타나는 오버레이
            (아래쪽 별도 버튼 대신 이미지 위에서 바로 클릭을 유도한다) */
         .card-overlay {
@@ -3669,6 +3673,8 @@
             .about-portrait { margin-top: 0; }
             .about-lower { grid-template-columns: 1fr; gap: 48px; }
             .editorial-grid { gap: 84px 24px; }
+            /* 좁은 화면에서는 카드 설명 강제 줄바꿈을 풀어 폭에 맞게 흐르게 한다 */
+            .card-desc .desc-br { display: none; }
             .item-visual-2, .item-visual-3, .item-visual-4, .item-visual-5 { grid-column: span 12; padding: 0; }
             /* 좁은 화면에서는 영상 3편을 세로로 */
             .video-strip { grid-template-columns: minmax(0, 1fr); gap: 28px; }
@@ -3924,13 +3930,11 @@
                     IDEAS.
                 </h1>
                 <p class="hero-statement ko">
-                    뷰티 브랜드의 특장점을 찾아내고,<br>
-                    AI 비주얼과 트렌디한 콘텐츠로<br>
-                    소비자의 공감과 반응을 이끌어내는<br>
-                    콘텐츠 마케터 <strong class="hero-name">서유리</strong>입니다.
+                    브랜드의 특장점을 찾아내고, AI 비주얼과 트렌디한 콘텐츠로<br>
+                    소비자의 공감과 반응을 이끌어내는 콘텐츠 마케터 <strong class="hero-name">서유리</strong>입니다.
                 </p>
                 <p class="hero-statement en">
-                    Finding what makes beauty brands stand out,<br>
+                    Finding what makes brands stand out,<br>
                     and driving consumer resonance<br>
                     with AI visuals and trend-aware content.
                 </p>
@@ -3998,8 +4002,8 @@
                 </div>
                 <div class="card-badge">④ Content Marketing</div>
                 <h3 class="card-title">TikTok Channel Growth</h3>
-                <p class="card-desc ko">스페인어권 시청자를 겨냥한 한국 라이프스타일 틱톡 채널(TikTok ES)을 운영하며 팔로워 10.5K, 누적 좋아요 78.6K, 단일 게시물 최고 조회수 91만 회를 기록했습니다.<br>글로벌 타깃을 사로잡은 숏폼 기획·편집 노하우를 바탕으로, 현재는 영어권 채널(TikTok US · Instagram EN)까지 영역을 확장해 K-뷰티 콘텐츠를 제작·운영하고 있습니다.</p>
-                <p class="card-desc en">Ran a Korean-lifestyle TikTok channel for Spanish-speaking audiences (TikTok ES), reaching 10.5K followers, 78.6K total likes, and 910K views on a single post. Building on that short-form planning and editing expertise, I'm now expanding into English-language channels (TikTok US · Instagram EN) to produce and run K-beauty content.</p>
+                <p class="card-desc ko">스페인어권 사람들을 타깃으로 한 한국 라이프스타일 틱톡 채널(TikTok ES)을 운영하며<span class="desc-br"><br></span> 팔로워 10.5K, 누적 좋아요 78.6K, 단일 게시물 최고 조회수 91만 회를 기록했습니다.<span class="desc-br"><br></span> 이 경험을 살려 현재는 영어권 채널(TikTok US · Instagram EN)까지<span class="desc-br"><br></span> 영역을 확장해 K-뷰티 콘텐츠를 제작·운영하고 있습니다.</p>
+                <p class="card-desc en">Ran a Korean-lifestyle TikTok channel targeting Spanish speakers (TikTok ES), reaching 10.5K followers, 78.6K total likes, and 910K views on a single post. Building on that experience, I'm now expanding into English-language channels (TikTok US · Instagram EN) to produce and run K-beauty content.</p>
             </article>
 
             <!-- ⑤ COUPANG & NAVER SMART STORE -->
