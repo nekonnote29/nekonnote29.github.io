@@ -920,6 +920,14 @@
            가로로 넘치지 않도록 한다. */
         .card-desc .br-pc { display: inline; }
 
+        /* ④ TikTok 카드 설명은 문장이 길어, 넓은 화면에서 90% 폭을 그대로 쓰면
+           한 줄이 1200px를 넘어 눈이 따라가기 힘들다.
+           데스크톱에서만 읽기 좋은 폭으로 묶어 자연스럽게 3줄로 흐르게 한다.
+           (좁은 화면은 기존 90% 규칙을 그대로 쓰므로 영향이 없다) */
+        @media (min-width: 901px) {
+            [data-project="project4"] .card-desc { max-width: 720px; }
+        }
+
         /* 카드 CTA — 이미지에 커서를 올리면 어두워지며 나타나는 오버레이
            (아래쪽 별도 버튼 대신 이미지 위에서 바로 클릭을 유도한다) */
         .card-overlay {
@@ -4102,7 +4110,7 @@
                 </div>
                 <div class="card-badge">④ Content Marketing</div>
                 <h3 class="card-title">TikTok Channel Growth</h3>
-                <p class="card-desc ko">스페인어권 사람들을 타깃으로 한 한국 라이프스타일 틱톡 채널(TikTok ES)을 운영하며<span class="br-pc"><br></span> 팔로워 10.5K, 누적 좋아요 78.6K, 단일 게시물 최고 조회수 91만 회를 기록했습니다.<span class="br-pc"><br></span> 이 경험을 살려 현재는 영어권 채널(TikTok US · Instagram EN)까지<span class="br-pc"><br></span> 영역을 확장해 K-뷰티 콘텐츠를 제작·운영하고 있습니다.</p>
+                <p class="card-desc ko">스페인어권 사람들을 타깃으로 한 한국 라이프스타일 틱톡 채널(TikTok ES)을 운영하며 팔로워 10.5K, 누적 좋아요 78.6K, 단일 게시물 최고 조회수 91만 회를 기록했습니다. 이 경험을 살려 현재는 영어권 채널(TikTok US · Instagram EN)까지 영역을 확장해 K-뷰티 콘텐츠를 제작·운영하고 있습니다.</p>
                 <p class="card-desc en">Ran a Korean-lifestyle TikTok channel targeting Spanish speakers (TikTok ES), reaching 10.5K followers, 78.6K total likes, and 910K views on a single post. Building on that experience, I'm now expanding into English-language channels (TikTok US · Instagram EN) to produce and run K-beauty content.</p>
             </article>
 
