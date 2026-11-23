@@ -920,12 +920,18 @@
            가로로 넘치지 않도록 한다. */
         .card-desc .br-pc { display: inline; }
 
-        /* ④ TikTok 카드 설명은 문장이 길어, 넓은 화면에서 90% 폭을 그대로 쓰면
-           한 줄이 1200px를 넘어 눈이 따라가기 힘들다.
-           데스크톱에서만 읽기 좋은 폭으로 묶어 자연스럽게 3줄로 흐르게 한다.
-           (좁은 화면은 기존 90% 규칙을 그대로 쓰므로 영향이 없다) */
-        @media (min-width: 901px) {
+        /* ④ TikTok 카드 설명은 두 문장이 각각 한 줄에 들어가도록 넓은 화면에서
+           폭을 묶는다. 다만 1024px 안팎은 폭이 모자라 한 문장이 두 줄로
+           쪼개지며 마지막에 "습니다."만 남으므로, 그 구간에서는 강제 줄바꿈을
+           끄고 읽기 좋은 폭에서 자연스럽게 흐르게 둔다.
+           (좁은 화면은 기존 90% 규칙을 그대로 쓴다) */
+        @media (min-width: 901px) and (max-width: 1199px) {
             [data-project="project4"] .card-desc { max-width: 720px; }
+            [data-project="project4"] .card-desc .br-pc { display: none; }
+        }
+
+        @media (min-width: 1200px) {
+            [data-project="project4"] .card-desc { max-width: 1080px; }
         }
 
         /* 카드 CTA — 이미지에 커서를 올리면 어두워지며 나타나는 오버레이
@@ -4110,7 +4116,7 @@
                 </div>
                 <div class="card-badge">④ Content Marketing</div>
                 <h3 class="card-title">TikTok Channel Growth</h3>
-                <p class="card-desc ko">스페인어권 사람들을 타깃으로 한 한국 라이프스타일 틱톡 채널(TikTok ES)을 운영하며 팔로워 10.5K, 누적 좋아요 78.6K, 단일 게시물 최고 조회수 91만 회를 기록했습니다. 이 경험을 살려 현재는 영어권 채널(TikTok US · Instagram EN)까지 영역을 확장해 K-뷰티 콘텐츠를 제작·운영하고 있습니다.</p>
+                <p class="card-desc ko">스페인어권 사람들을 타깃으로 한 한국 라이프스타일 틱톡 채널(TikTok ES)을 운영하며 팔로워 10.5K, 누적 좋아요 78.6K, 단일 게시물 최고 조회수 91만 회를 기록했습니다.<span class="br-pc"><br></span> 이 경험을 살려 현재는 영어권 채널(TikTok US · Instagram EN)까지 영역을 확장해 K-뷰티 콘텐츠를 제작·운영하고 있습니다.</p>
                 <p class="card-desc en">Ran a Korean-lifestyle TikTok channel targeting Spanish speakers (TikTok ES), reaching 10.5K followers, 78.6K total likes, and 910K views on a single post. Building on that experience, I'm now expanding into English-language channels (TikTok US · Instagram EN) to produce and run K-beauty content.</p>
             </article>
 
